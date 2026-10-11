@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nepoteidea — Sebastian Nepote, CTO</title>
+    <meta name="description" content="Sebastian Nepote — Chief Technology Officer with two decades of building and leading engineering and product teams. Berlin, via Barcelona." />
+    <meta name="author" content="Sebastian Nepote" />
+    <meta name="theme-color" content="#0f0b1a" />
+    <meta property="og:title" content="nepoteidea — Sebastian Nepote, CTO" />
+    <meta property="og:description" content="I help teams ship great software." />
+    <meta property="og:url" content="https://nepoteidea.com/" />
+    <meta property="og:type" content="website" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+    <link rel="icon" href="/images/favicon.ico" />
+    <link rel="manifest" href="/images/site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      // Paint the saved theme's background before the app mounts, so light-mode
+      // visitors don't get a dark flash.
+      try {
+        if (localStorage.getItem('nepote-theme-v2') === 'light') {
+          document.documentElement.style.background = 'oklch(0.985 0.004 285)'
+        }
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
