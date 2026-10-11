@@ -1,0 +1,65 @@
+import { render, screen, within } from '@testing-library/svelte'
+import userEvent from '@testing-library/user-event'
+import { afterEach, describe, expect, it } from 'vitest'
+import App from './App.svelte'
+import { CAREER, STRENGTHS } from './lib/content'
+import { THEME_KEY } from './lib/theme'
+
+afterEach(() => localStorage.clear())
+
+describe('App', () => {
+  it('renders the hero, strengths, career, about and contact sections', () => {
+    render(App)
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('I help teams ship great software.')
+    for (const s of STRENGTHS) expect(screen.getByRole('heading', { name: s.title })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Behind the domain' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /hello@nepoteidea\.com/ })).toHaveAttribute(
+      'href',
+      'mailto:hello@nepoteidea.com',
+    )
+  })
+
+  it('lists every role on the career timeline, newest first', () => {
+    render(App)
+    const timeline = screen.getByRole('list')
+    const items = within(timeline).getAllByRole('listitem')
+    expect(items).toHaveLength(CAREER.length)
+    expect(items[0]).toHaveTextContent('Co-Founder & CTO')
+    expect(items[0]).toHaveTextContent('Consultport · Full-time')
+    expect(items.at(-1)).toHaveTextContent('Software Engineer')
+  })
+
+  it('links the nav to each section', () => {
+    render(App)
+    const nav = screen.getByRole('navigation')
+    for (const [name, href] of [
+      ['What I do', '#do'],
+      ['Career', '#career'],
+      ['About', '#about'],
+      ['Contact', '#contact'],
+    ]) {
+      expect(within(nav).getByRole('link', { name })).toHaveAttribute('href', href)
+      expect(document.querySelector(href)).not.toBeNull()
+    }
+  })
+
+  it('starts dark and toggles to light, remembering the choice', async () => {
+    const { container } = render(App)
+    const site = container.querySelector('.site')!
+    expect(site).toHaveAttribute('data-theme', 'dark')
+
+    await userEvent.click(screen.getByRole('button', { name: 'Switch to light mode' }))
+    expect(site).toHaveAttribute('data-theme', 'light')
+    expect(localStorage.getItem(THEME_KEY)).toBe('light')
+    expect(document.body.style.background).toContain('0.985')
+
+    await userEvent.click(screen.getByRole('button', { name: 'Switch to dark mode' }))
+    expect(site).toHaveAttribute('data-theme', 'dark')
+  })
+
+  it('restores a saved light theme', () => {
+    localStorage.setItem(THEME_KEY, 'light')
+    const { container } = render(App)
+    expect(container.querySelector('.site')).toHaveAttribute('data-theme', 'light')
+  })
+})
