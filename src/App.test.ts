@@ -13,6 +13,8 @@ describe('App', () => {
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('I help teams ship great software.')
     for (const s of STRENGTHS) expect(screen.getByRole('heading', { name: s.title })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Behind the domain' })).toBeInTheDocument()
+    expect(screen.getByRole('img', { name: 'Sebastian Nepote' })).toHaveAttribute('src', '/images/avatar.jpg')
+    expect(screen.getByRole('link', { name: 'linkedin' })).toHaveAttribute('href', 'https://www.linkedin.com/in/snepote/')
     expect(screen.getByRole('link', { name: /hello@nepoteidea\.com/ })).toHaveAttribute(
       'href',
       'mailto:hello@nepoteidea.com',

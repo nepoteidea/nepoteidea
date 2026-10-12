@@ -113,6 +113,6 @@ export const CONTACT_EMAIL = 'hello@nepoteidea.com'
 
 export const SOCIAL_LINKS: SocialLink[] = [
   { label: 'github', href: '' },
-  { label: 'linkedin', href: '' },
+  { label: 'linkedin', href: 'https://www.linkedin.com/in/snepote/' },
   { label: 'x / twitter', href: '' },
 ]

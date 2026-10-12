@@ -161,7 +161,7 @@
           <div class="about-grid">
             <div use:reveal>
               <div class="avatar-wrap">
-                <div class="avatar" role="img" aria-label="Sebastian Nepote">SN</div>
+                <img class="avatar" src="/images/avatar.jpg" alt="Sebastian Nepote" width="200" height="200" loading="lazy" />
               </div>
             </div>
             <div class="about-copy" use:reveal={100}>
