@@ -14,6 +14,17 @@ export interface Job {
   skills?: string[]
 }
 
+export interface Project {
+  name: string
+  blurb: string
+  /** Screenshot under `public/`, served from the site root. */
+  image: string
+  url: string
+  /** Omitted for projects whose source isn't public. */
+  repo?: string
+  stack: string[]
+}
+
 export interface SocialLink {
   label: string
   /** Links without a URL yet are hidden rather than rendered as dead `#` links. */
@@ -106,6 +117,33 @@ export const CAREER: Job[] = [
     company: 'Anuntis Segundamano',
     type: 'Full-time',
     loc: 'Sant Cugat del Vallès, Spain',
+  },
+]
+
+export const PROJECTS: Project[] = [
+  {
+    name: 'asado-today',
+    blurb: 'Helps a group of friends decide whether today is a good day for an asado, based on the local weather forecast.',
+    image: '/images/projects/asado-today.png',
+    url: 'https://asado-today.nepoteidea.com/',
+    repo: 'https://github.com/snepote/asado-today',
+    stack: ['SvelteKit', 'Tailwind', 'Cloudflare D1'],
+  },
+  {
+    name: 'tic-tac-toe',
+    blurb: 'Two players, one device, first to three in a row wins — with a running scoreboard and a full test suite.',
+    image: '/images/projects/tic-tac-toe.png',
+    url: 'https://tic-tac-toe.nepoteidea.com/',
+    repo: 'https://github.com/nepoteidea/tic-tac-toe',
+    stack: ['Svelte', 'TypeScript', 'Vitest'],
+  },
+  {
+    name: 'red-crab',
+    blurb: 'A Chrome-dino-style endless runner: a crowned crab jumping over rocks, coral and the odd llama on the ocean floor.',
+    image: '/images/projects/red-crab.png',
+    url: 'https://red-crab.nepoteidea.com/',
+    repo: 'https://github.com/nepoteidea/red-crab',
+    stack: ['JavaScript', 'Canvas', 'Playwright'],
   },
 ]
 

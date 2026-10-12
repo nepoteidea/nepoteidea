@@ -2,7 +2,7 @@ import { render, screen, within } from '@testing-library/svelte'
 import userEvent from '@testing-library/user-event'
 import { afterEach, describe, expect, it } from 'vitest'
 import App from './App.svelte'
-import { CAREER, STRENGTHS } from './lib/content'
+import { CAREER, PROJECTS, STRENGTHS } from './lib/content'
 import { THEME_KEY } from './lib/theme'
 
 afterEach(() => localStorage.clear())
@@ -31,12 +31,23 @@ describe('App', () => {
     expect(items.at(-1)).toHaveTextContent('Software Engineer')
   })
 
+  it('shows each project with a screenshot, live app link and GitHub link', () => {
+    render(App)
+    for (const p of PROJECTS) {
+      const card = screen.getByRole('heading', { name: p.name }).closest('article')!
+      expect(within(card).getByRole('img', { name: `Screenshot of ${p.name}` })).toHaveAttribute('src', p.image)
+      expect(within(card).getByRole('link', { name: `Open ${p.name}` })).toHaveAttribute('href', p.url)
+      expect(within(card).getByRole('link', { name: `${p.name} on GitHub` })).toHaveAttribute('href', p.repo)
+    }
+  })
+
   it('links the nav to each section', () => {
     render(App)
     const nav = screen.getByRole('navigation')
     for (const [name, href] of [
       ['What I do', '#do'],
       ['Career', '#career'],
+      ['Projects', '#projects'],
       ['About', '#about'],
       ['Contact', '#contact'],
     ]) {

@@ -25,14 +25,14 @@ npm run dev
 
 ```
 src/
-  lib/content.ts        Page copy: strengths, career timeline, contact and social links
+  lib/content.ts        Page copy: strengths, career timeline, projects, contact and social links
   lib/terminal.ts       Typing-animation script and step logic for the hero terminal
   lib/Terminal.svelte   Hero terminal window
   lib/reveal.ts         Scroll-reveal action
   lib/theme.ts          Dark/light theme persistence and reduced-motion detection
   App.svelte            Page layout
   app.css               Design tokens and styles (from the design's nepoteidea-styles.css)
-public/                 Favicons, web manifest, robots.txt
+public/                 Favicons, project screenshots, web manifest, robots.txt
 ```
 
 Social links in `src/lib/content.ts` are hidden until they have a URL. Visitors who prefer reduced motion get the
