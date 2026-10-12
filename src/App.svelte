@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { CAREER, CONTACT_EMAIL, SOCIAL_LINKS, STRENGTHS } from './lib/content'
+  import { CAREER, CONTACT_EMAIL, PROJECTS, SOCIAL_LINKS, STRENGTHS } from './lib/content'
   import { reveal } from './lib/reveal'
   import Terminal from './lib/Terminal.svelte'
   import ThemeIcon from './lib/ThemeIcon.svelte'
@@ -57,6 +57,7 @@
       <div class="nav-links">
         <a href="#do">What I do</a>
         <a href="#career">Career</a>
+        <a href="#projects">Projects</a>
         <a href="#about">About</a>
       </div>
       <button
@@ -149,6 +150,40 @@
               </li>
             {/each}
           </ol>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="shell">
+          <div class="section-head" use:reveal>
+            <div class="eyebrow">~/projects</div>
+            <h2>Things I’ve built</h2>
+            <p>Side projects I build to stay hands-on — all live, all open source.</p>
+          </div>
+          <div class="project-grid">
+            {#each PROJECTS as p, i (p.name)}
+              <div use:reveal={i * 90}>
+                <article class="card project">
+                  <a class="project-shot" href={p.url} rel="noopener" target="_blank" tabindex="-1">
+                    <img src={p.image} alt="Screenshot of {p.name}" width="1280" height="800" loading="lazy" />
+                  </a>
+                  <div class="project-body">
+                    <h3>{p.name}</h3>
+                    <p>{p.blurb}</p>
+                    <div class="chips">
+                      {#each p.stack as tech (tech)}<span class="chip">{tech}</span>{/each}
+                    </div>
+                    <div class="project-links">
+                      <a href={p.url} rel="noopener" target="_blank" aria-label="Open {p.name}">Live app <span class="arrow">↗</span></a>
+                      {#if p.repo}
+                        <a href={p.repo} rel="noopener" target="_blank" aria-label="{p.name} on GitHub">GitHub <span class="arrow">↗</span></a>
+                      {/if}
+                    </div>
+                  </div>
+                </article>
+              </div>
+            {/each}
+          </div>
         </div>
       </section>
 
