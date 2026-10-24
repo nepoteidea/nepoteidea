@@ -4,6 +4,7 @@ import App from './App.svelte'
 
 vi.mock('./lib/content', async (importOriginal) => ({
   ...(await importOriginal<typeof import('./lib/content')>()),
+  GAMES: [],
   PROJECTS: [
     {
       name: 'secret-app',
