@@ -424,6 +424,18 @@ section { position: relative; }
 
 /* ---------- project cards ---------- */
 
+.subsection-head { padding: 64px 0 32px; }
+
+.subsection-head h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(26px, 3vw, 34px);
+  letter-spacing: -0.02em;
+  margin: 12px 0 10px;
+}
+
+.subsection-head p { color: var(--ink-dim); margin: 0; max-width: 52ch; }
+
 .project-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -464,7 +476,7 @@ section { position: relative; }
   padding: 18px 12px 0;
 }
 
-.project-body h3 {
+.project-body :is(h3, h4) {
   font-family: var(--font-mono);
   font-size: 18px;
   letter-spacing: -0.01em;

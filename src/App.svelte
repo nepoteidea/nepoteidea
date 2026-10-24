@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { CAREER, CONTACT_EMAIL, PROJECTS, SOCIAL_LINKS, STRENGTHS } from './lib/content'
+  import { CAREER, CONTACT_EMAIL, GAMES, PROJECTS, SOCIAL_LINKS, STRENGTHS, type Project } from './lib/content'
   import { reveal } from './lib/reveal'
   import Terminal from './lib/Terminal.svelte'
   import ThemeIcon from './lib/ThemeIcon.svelte'
@@ -28,6 +28,28 @@
   const socialLinks = SOCIAL_LINKS.filter((l) => l.href)
   const year = new Date().getFullYear()
 </script>
+
+{#snippet projectCard(p: Project, heading: 'h3' | 'h4')}
+  <article class="card project">
+    <a class="project-shot" href={p.url} rel="noopener" target="_blank" tabindex="-1">
+      <img src={p.image} alt="Screenshot of {p.name}" width="1280" height="800" loading="lazy" />
+    </a>
+    <div class="project-body">
+      <svelte:element this={heading}>{p.name}</svelte:element>
+      <p>{p.blurb}</p>
+      <div class="chips">
+        {#each p.stack as tech (tech)}<span class="chip">{tech}</span>{/each}
+      </div>
+      <div class="project-links">
+        <a href={p.url} rel="noopener" target="_blank" aria-label="Open {p.name}">Live app <span class="arrow">↗</span></a>
+        {#if p.repo}
+          <a href={p.repo} rel="noopener" target="_blank" aria-label="{p.name} on GitHub">GitHub <span class="arrow">↗</span></a>
+        {/if}
+      </div>
+    </div>
+  </article>
+{/snippet}
+
 
 <div
   class="site"
@@ -162,26 +184,18 @@
           </div>
           <div class="project-grid">
             {#each PROJECTS as p, i (p.name)}
-              <div use:reveal={i * 90}>
-                <article class="card project">
-                  <a class="project-shot" href={p.url} rel="noopener" target="_blank" tabindex="-1">
-                    <img src={p.image} alt="Screenshot of {p.name}" width="1280" height="800" loading="lazy" />
-                  </a>
-                  <div class="project-body">
-                    <h3>{p.name}</h3>
-                    <p>{p.blurb}</p>
-                    <div class="chips">
-                      {#each p.stack as tech (tech)}<span class="chip">{tech}</span>{/each}
-                    </div>
-                    <div class="project-links">
-                      <a href={p.url} rel="noopener" target="_blank" aria-label="Open {p.name}">Live app <span class="arrow">↗</span></a>
-                      {#if p.repo}
-                        <a href={p.repo} rel="noopener" target="_blank" aria-label="{p.name} on GitHub">GitHub <span class="arrow">↗</span></a>
-                      {/if}
-                    </div>
-                  </div>
-                </article>
-              </div>
+              <div use:reveal={i * 90}>{@render projectCard(p, 'h3')}</div>
+            {/each}
+          </div>
+
+          <div class="subsection-head" use:reveal>
+            <div class="eyebrow">~/projects/games</div>
+            <h3 id="games">Games</h3>
+            <p>Small browser games: tilt your phone or tap to jump.</p>
+          </div>
+          <div class="project-grid">
+            {#each GAMES as p, i (p.name)}
+              <div use:reveal={i * 90}>{@render projectCard(p, 'h4')}</div>
             {/each}
           </div>
         </div>

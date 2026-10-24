@@ -25,7 +25,7 @@ npm run dev
 
 ```
 src/
-  lib/content.ts        Page copy: strengths, career timeline, projects, contact and social links
+  lib/content.ts        Page copy: strengths, career timeline, projects, games, contact and social links
   lib/terminal.ts       Typing-animation script and step logic for the hero terminal
   lib/Terminal.svelte   Hero terminal window
   lib/reveal.ts         Scroll-reveal action

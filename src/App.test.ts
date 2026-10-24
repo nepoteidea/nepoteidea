@@ -2,7 +2,7 @@ import { render, screen, within } from '@testing-library/svelte'
 import userEvent from '@testing-library/user-event'
 import { afterEach, describe, expect, it } from 'vitest'
 import App from './App.svelte'
-import { CAREER, PROJECTS, STRENGTHS } from './lib/content'
+import { CAREER, GAMES, PROJECTS, STRENGTHS } from './lib/content'
 import { THEME_KEY } from './lib/theme'
 
 afterEach(() => localStorage.clear())
@@ -31,14 +31,22 @@ describe('App', () => {
     expect(items.at(-1)).toHaveTextContent('Software Engineer')
   })
 
-  it('shows each project with a screenshot, live app link and GitHub link', () => {
+  it('shows each project and game with a screenshot, live app link and GitHub link', () => {
     render(App)
-    for (const p of PROJECTS) {
+    for (const p of [...PROJECTS, ...GAMES]) {
       const card = screen.getByRole('heading', { name: p.name }).closest('article')!
       expect(within(card).getByRole('img', { name: `Screenshot of ${p.name}` })).toHaveAttribute('src', p.image)
       expect(within(card).getByRole('link', { name: `Open ${p.name}` })).toHaveAttribute('href', p.url)
       expect(within(card).getByRole('link', { name: `${p.name} on GitHub` })).toHaveAttribute('href', p.repo)
     }
+  })
+
+  it('lists the games in their own subsection under Projects', () => {
+    render(App)
+    const games = screen.getByRole('heading', { level: 3, name: 'Games' })
+    expect(document.querySelector('#projects')).toContainElement(games)
+    expect(screen.getAllByRole('heading', { level: 4 }).map((h) => h.textContent)).toEqual(GAMES.map((g) => g.name))
+    expect(GAMES.map((g) => g.name)).toEqual(['cheetah-on', 'red-crab'])
   })
 
   it('links the nav to each section', () => {

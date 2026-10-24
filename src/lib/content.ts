@@ -137,6 +137,18 @@ export const PROJECTS: Project[] = [
     repo: 'https://github.com/nepoteidea/tic-tac-toe',
     stack: ['Svelte', 'TypeScript', 'Vitest'],
   },
+]
+
+/** Browser games, shown in their own subsection under Projects. */
+export const GAMES: Project[] = [
+  {
+    name: 'cheetah-on',
+    blurb: 'Tilt your phone to roll a tiny chrome ball around a folk-art cheetah rug, without touching the cheetah or the pink border.',
+    image: '/images/projects/cheetah-on.webp',
+    url: 'https://cheetah-on.nepoteidea.com/',
+    repo: 'https://github.com/nepoteidea/cheetah-on',
+    stack: ['JavaScript', 'Canvas', 'Gyroscope'],
+  },
   {
     name: 'red-crab',
     blurb: 'A Chrome-dino-style endless runner: a crowned crab jumping over rocks, coral and the odd llama on the ocean floor.',
