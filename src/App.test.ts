@@ -46,7 +46,7 @@ describe('App', () => {
     const games = screen.getByRole('heading', { level: 3, name: 'Games' })
     expect(document.querySelector('#projects')).toContainElement(games)
     expect(screen.getAllByRole('heading', { level: 4 }).map((h) => h.textContent)).toEqual(GAMES.map((g) => g.name))
-    expect(GAMES.map((g) => g.name)).toEqual(['cheetah-on', 'red-crab'])
+    expect(GAMES.map((g) => g.name)).toEqual(['cheetah-on', 'red-crab', 'tic-tac-toe'])
   })
 
   it('links the nav to each section', () => {

@@ -191,7 +191,7 @@
           <div class="subsection-head" use:reveal>
             <div class="eyebrow">~/projects/games</div>
             <h3 id="games">Games</h3>
-            <p>Small browser games: tilt your phone or tap to jump.</p>
+            <p>Small browser games: tilt your phone, tap to jump, or play a friend.</p>
           </div>
           <div class="project-grid">
             {#each GAMES as p, i (p.name)}

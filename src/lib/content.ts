@@ -129,14 +129,6 @@ export const PROJECTS: Project[] = [
     repo: 'https://github.com/snepote/asado-today',
     stack: ['SvelteKit', 'Tailwind', 'Cloudflare D1'],
   },
-  {
-    name: 'tic-tac-toe',
-    blurb: 'Two players, one device, first to three in a row wins — with a running scoreboard and a full test suite.',
-    image: '/images/projects/tic-tac-toe.png',
-    url: 'https://tic-tac-toe.nepoteidea.com/',
-    repo: 'https://github.com/nepoteidea/tic-tac-toe',
-    stack: ['Svelte', 'TypeScript', 'Vitest'],
-  },
 ]
 
 /** Browser games, shown in their own subsection under Projects. */
@@ -156,6 +148,14 @@ export const GAMES: Project[] = [
     url: 'https://red-crab.nepoteidea.com/',
     repo: 'https://github.com/nepoteidea/red-crab',
     stack: ['JavaScript', 'Canvas', 'Playwright'],
+  },
+  {
+    name: 'tic-tac-toe',
+    blurb: 'Two players, one device, first to three in a row wins — with a running scoreboard and a full test suite.',
+    image: '/images/projects/tic-tac-toe.png',
+    url: 'https://tic-tac-toe.nepoteidea.com/',
+    repo: 'https://github.com/nepoteidea/tic-tac-toe',
+    stack: ['Svelte', 'TypeScript', 'Vitest'],
   },
 ]
 
